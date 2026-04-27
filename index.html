@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Perpustakaan Digital | SMP Mangun Jaya 01</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="icon" href="logo_sekolah1.png" type="image/png">
+</head>
+
+<body>
+    <!-- Mobile Toggle -->
+    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Menu">
+        <i class="fas fa-bars"></i>
+    </button>
+    <div class="overlay" id="overlay"></div>
+
+    <div class="app-container">
+
+        <!-- ====== SIDEBAR ====== -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-sidebar">
+                    <img src="logo_sekolah1.png" alt="Logo SMP Mangun Jaya 01" class="logo-sidebar-img" onerror="this.style.display='none'">
+                    <div class="logo-sidebar-text">
+                        <span>SMP</span>
+                        <span>MANGUN JAYA 01</span>
+                        <span>Tambun Selatan · Bekasi</span>
+                    </div>
+                </div>
+                <div class="sidebar-tag">
+                    <i class="fas fa-book-open"></i> Perpustakaan Digital
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <div class="nav-section-label">Menu Utama</div>
+
+                <a href="#" class="nav-item active" data-tab="peminjaman">
+                    <div class="nav-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                    <span>Peminjaman</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="riwayat">
+                    <div class="nav-icon"><i class="fas fa-clock-rotate-left"></i></div>
+                    <span>Riwayat</span>
+                </a>
+
+                <div class="nav-section-label">Analitik</div>
+
+                <a href="#" class="nav-item" data-tab="statistik">
+                    <div class="nav-icon"><i class="fas fa-chart-pie"></i></div>
+                    <span>Statistik</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="buku">
+                    <div class="nav-icon"><i class="fas fa-book"></i></div>
+                    <span>Koleksi Buku</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar"><i class="fas fa-user-graduate"></i></div>
+                    <div class="user-info-text">
+                        <small>Petugas Perpustakaan</small>
+                        <strong>SMP Mangun Jaya 01</strong>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ====== MAIN CONTENT ====== -->
+        <main class="main-content">
+
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <div class="page-title">
+                    <h1 id="pageTitle">Peminjaman Buku</h1>
+                    <p id="pageSubtitle">Kelola peminjaman dan pengembalian buku perpustakaan</p>
+                </div>
+                <div class="header-stats">
+                    <div class="header-stat">
+                        <div class="header-stat-icon total"><i class="fas fa-book-open"></i></div>
+                        <div class="header-stat-text">
+                            <span id="headerTotal">0</span>
+                            <small>Total Pinjam</small>
+                        </div>
+                    </div>
+                    <div class="header-stat">
+                        <div class="header-stat-icon aktif"><i class="fas fa-hourglass-half"></i></div>
+                        <div class="header-stat-text">
+                            <span id="headerAktif">0</span>
+                            <small>Aktif</small>
+                        </div>
+                    </div>
+                    <div class="header-stat">
+                        <div class="header-stat-icon selesai"><i class="fas fa-circle-check"></i></div>
+                        <div class="header-stat-text">
+                            <span id="headerSelesai">0</span>
+                            <small>Selesai</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== TAB PEMINJAMAN ===== -->
+            <div id="tabPeminjaman" class="tab-content active">
+                <div class="two-columns">
+
+                    <!-- Form Peminjaman -->
+                    <div class="card form-card">
+                        <div class="card-header">
+                            <div class="card-header-icon"><i class="fas fa-pen-to-square"></i></div>
+                            <h3>Form Peminjaman Buku</h3>
+                        </div>
+                        <div class="card-body">
+                            <form id="formPeminjaman">
+                                <div class="input-group">
+                                    <label><i class="fas fa-barcode"></i> Kode Buku</label>
+                                    <input type="text" id="kodeBuku" placeholder="Contoh: MUP-01" autocomplete="off">
+                                </div>
+                                <div class="input-group">
+                                    <label><i class="fas fa-user"></i> Nama Siswa</label>
+                                    <input type="text" id="namaSiswa" placeholder="Nama lengkap siswa">
+                                </div>
+                                <div class="input-group">
+                                    <label><i class="fas fa-graduation-cap"></i> Kelas</label>
+                                    <select id="kelas">
+                                        <option value="">Pilih Kelas</option>
+                                        <option value="VII">VII</option>
+                                        <option value="VIII">VIII</option>
+                                        <option value="IX">IX</option>
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <label><i class="fas fa-book"></i> Judul Buku</label>
+                                    <select id="judulBuku">
+                                        <option value="">Pilih Judul Buku</option>
+                                    </select>
+                                </div>
+                                <div class="row-2">
+                                    <div class="input-group" style="min-width:0">
+                                        <label><i class="fas fa-calendar-day"></i> Tgl Pinjam</label>
+                                        <input type="date" id="tglPinjam">
+                                    </div>
+                                    <div class="input-group" style="min-width:0">
+                                        <label><i class="fas fa-calendar-plus"></i> Tgl Kembali</label>
+                                        <input type="date" id="tglKembali">
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn-primary btn-block">
+                                    <i class="fas fa-circle-check"></i> Pinjam Buku
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Right Panel -->
+                    <div class="right-panel">
+
+                        <!-- Pengembalian -->
+                        <div class="card return-card">
+                            <div class="card-header">
+                                <div class="card-header-icon amber"><i class="fas fa-rotate-left"></i></div>
+                                <h3>Pengembalian Buku</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="return-input">
+                                    <input type="text" id="returnKodeBuku" placeholder="Masukkan kode buku (contoh: MUP-01)">
+                                    <button id="btnKembalikan" class="btn-return">
+                                        <i class="fas fa-check"></i> Kembalikan
+                                    </button>
+                                </div>
+                                <div id="returnMessage" class="message-box"></div>
+                            </div>
+                        </div>
+
+                        <!-- Tabel Aktif -->
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="card-header-icon"><i class="fas fa-list-check"></i></div>
+                                <h3>Peminjaman Aktif</h3>
+                            </div>
+                            <div class="aktif-toolbar">
+                                <div class="search-group" style="flex:1">
+                                    <i class="fas fa-magnifying-glass"></i>
+                                    <input type="text" id="searchAktif" placeholder="Cari nama, kode, atau judul…">
+                                </div>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="table-container">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Kode</th>
+                                                <th>Siswa</th>
+                                                <th>Kelas</th>
+                                                <th>Judul Buku</th>
+                                                <th>Tgl Pinjam</th>
+                                                <th>Jatuh Tempo</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbodyPeminjaman">
+                                            <tr class="empty-row">
+                                                <td colspan="7">
+                                                    <i class="fas fa-inbox"></i>
+                                                    <p>Belum ada peminjaman aktif</p>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /right-panel -->
+                </div>
+            </div>
+
+            <!-- ===== TAB RIWAYAT ===== -->
+            <div id="tabRiwayat" class="tab-content">
+                <div class="card full-width">
+                    <div class="card-header">
+                        <div class="card-header-icon"><i class="fas fa-clock-rotate-left"></i></div>
+                        <h3>Riwayat Seluruh Peminjaman</h3>
+                        <div class="header-actions">
+                            <div class="filter-group">
+                                <i class="fas fa-sliders"></i>
+                                <select id="filterStatusRiwayat">
+                                    <option value="semua">Semua Status</option>
+                                    <option value="dipinjam">Masih Dipinjam</option>
+                                    <option value="dikembalikan">Dikembalikan</option>
+                                </select>
+                            </div>
+                            <div class="search-group">
+                                <i class="fas fa-magnifying-glass"></i>
+                                <input type="text" id="searchRiwayat" placeholder="Cari nama, kode, judul…">
+                            </div>
+                            <button class="btn-icon" onclick="exportToCSV()" title="Export CSV">
+                                <i class="fas fa-download"></i>
+                            </button>
+                            <button class="btn-icon btn-danger" onclick="clearAllData()" title="Hapus Semua Data">
+                                <i class="fas fa-trash-can"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Kode</th>
+                                        <th>Siswa</th>
+                                        <th>Kelas</th>
+                                        <th>Judul Buku</th>
+                                        <th>Tgl Pinjam</th>
+                                        <th>Jatuh Tempo</th>
+                                        <th>Dikembalikan</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbodyRiwayat">
+                                    <tr class="empty-row">
+                                        <td colspan="8">
+                                            <i class="fas fa-inbox"></i>
+                                            <p>Belum ada data peminjaman</p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== TAB STATISTIK ===== -->
+            <div id="tabStatistik" class="tab-content">
+                <div class="stats-grid">
+                    <div class="card stat-card">
+                        <div class="stat-card-inner">
+                            <div class="stat-icon primary"><i class="fas fa-book-reader"></i></div>
+                            <div class="stat-detail">
+                                <span class="stat-value" id="statTotal">0</span>
+                                <span class="stat-label">Total Peminjaman</span>
+                            </div>
+                        </div>
+                        <div class="stat-card-bg"><i class="fas fa-book-reader"></i></div>
+                    </div>
+                    <div class="card stat-card">
+                        <div class="stat-card-inner">
+                            <div class="stat-icon warning"><i class="fas fa-hourglass-half"></i></div>
+                            <div class="stat-detail">
+                                <span class="stat-value" id="statAktif">0</span>
+                                <span class="stat-label">Aktif Dipinjam</span>
+                            </div>
+                        </div>
+                        <div class="stat-card-bg"><i class="fas fa-hourglass-half"></i></div>
+                    </div>
+                    <div class="card stat-card">
+                        <div class="stat-card-inner">
+                            <div class="stat-icon success"><i class="fas fa-circle-check"></i></div>
+                            <div class="stat-detail">
+                                <span class="stat-value" id="statSelesai">0</span>
+                                <span class="stat-label">Sudah Dikembalikan</span>
+                            </div>
+                        </div>
+                        <div class="stat-card-bg"><i class="fas fa-circle-check"></i></div>
+                    </div>
+                </div>
+
+                <div class="two-columns">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-header-icon"><i class="fas fa-chart-bar"></i></div>
+                            <h3>Statistik per Kelas</h3>
+                        </div>
+                        <div class="card-body">
+                            <div id="statsKelas" class="stats-list"></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-header-icon amber"><i class="fas fa-trophy"></i></div>
+                            <h3>Buku Paling Diminati</h3>
+                        </div>
+                        <div class="card-body">
+                            <div id="topBuku" class="rank-list"></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-header-icon green"><i class="fas fa-star"></i></div>
+                            <h3>Siswa Teraktif</h3>
+                        </div>
+                        <div class="card-body">
+                            <div id="topSiswa" class="rank-list"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== TAB KOLEKSI BUKU ===== -->
+            <div id="tabBuku" class="tab-content">
+                <div class="card full-width">
+                    <div class="card-header">
+                        <div class="card-header-icon"><i class="fas fa-books"></i></div>
+                        <h3>Koleksi Buku Perpustakaan</h3>
+                        <div class="header-actions">
+                            <div class="search-group">
+                                <i class="fas fa-magnifying-glass"></i>
+                                <input type="text" id="searchBuku" placeholder="Cari judul atau kode buku…">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="buku-grid" id="bukuGrid"></div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
